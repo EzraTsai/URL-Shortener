@@ -1,6 +1,8 @@
 const express = require('express')
 const mongoose = require('mongoose')
 const exphbs = require('express-handlebars')
+const Shortener = require('./models/shortener')
+const shortener = require('./models/shortener')
 const app = express()
 const PORT = 3000
 
@@ -18,7 +20,10 @@ app.engine('hbs', exphbs({ defaultLayout: 'main', extname:'.hbs'}))
 app.set('view engine', 'hbs')
 
 app.get('/', (req, res) => {
-    res.render('index')
+    Shortener.find()
+    .lean()
+    .then(shorteners => res.render('index', { shorteners}))
+    .catch(error => console.log(error))    
 })
 
 app.listen(PORT, () => {
