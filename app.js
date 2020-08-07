@@ -4,6 +4,7 @@ const bodyParser = require('body-parser')
 const exphbs = require('express-handlebars')
 const Shortener = require('./models/shortener')
 const shortener = require('./models/shortener')
+const generaterURL = require('./generater')
 const app = express()
 const PORT = 3000
 
@@ -23,15 +24,13 @@ app.set('view engine', 'hbs')
 app.use(bodyParser.urlencoded({ extended: true }))
 
 app.get('/', (req, res) => {
-    Shortener.find()
-    .lean()
-    .then(shorteners => res.render('index', { shorteners}))
-    .catch(error => console.log(error))    
+    res.render('index')
 })
 
 app.post('/', (req,res) => {
-    console.log('req.body', req.body)
-    res.render('index')
+    const fullUrl = (req.body.fullUrl)
+    const shortUrl = generaterURL(req,res)
+    res.render('generate', { fullUrl, shortUrl })
 })
 
 app.listen(PORT, () => {
