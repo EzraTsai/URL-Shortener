@@ -8,7 +8,7 @@ const shortenerSchema = new Schema({
         required: true
     },
     shortUrl: {
-        default: generateURL(),
+        default: generateURL,
         type: String,
         require: true
     }
