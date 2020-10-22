@@ -13,7 +13,7 @@ router.post('/', (req, res) => {
             const orgUrl = req.protocol + "://" + req.get('host') + req.originalUrl
             let a = shortener.shortUrl
             let newUrl = orgUrl + a
-            res.render('generate', { newUrl, fullUrl })
+            res.render('generate', { newUrl })
         })
         .catch(error => console.log(error))
 })

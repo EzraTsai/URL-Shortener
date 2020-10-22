@@ -14,10 +14,10 @@ function generateURL() {
     collection = collection.concat(upperCaseLetters.split(''))
     collection = collection.concat(numbers.split(''))
 
-    let sortenURL= ''
+    let shortenURL= ''
     for (let i = 0; i < 5; i++) {
-        sortenURL += sample(collection)
+        shortenURL += sample(collection)
     }
-    return sortenURL
+    return shortenURL
 }
 module.exports = generateURL

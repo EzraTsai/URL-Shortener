@@ -3,7 +3,7 @@ const mongoose = require('mongoose')
 const bodyParser = require('body-parser')
 const exphbs = require('express-handlebars')
 const routes = require('./routes')
-// const generaterURL = require('./generater')
+const Shortener = require('./models/shortener')
 const app = express()
 const PORT = 3000
 
@@ -22,6 +22,16 @@ app.set('view engine', 'hbs')
 
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(routes)
+
+app.get('/:shortUrl', (req, res) => {
+    const params = req.params.shortUrl
+    Shortener.findOne({ shortUrl: params })
+        .lean()
+        .then(item => {
+            res.redirect(item.fullUrl)
+        })
+        .catch(error => console.log(error))
+})
 
 app.listen(PORT, () => {
     console.log('App is listening on port: 3000')
