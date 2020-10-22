@@ -2,8 +2,7 @@
 一個使用Express 與 Node.js + Express-Handlebars + Mongodb 開發的短網生成網站
 
 # Project Capture - 專案畫面
-![image](https://github.com/EzraTsai/Expense-tracker/blob/master/Picture/Picture%201.PNG)
-![image](https://github.com/EzraTsai/Expense-tracker/blob/master/Picture/Picture%202.PNG)
+![image](https://github.com/EzraTsai/URL-Shortener/blob/master/shortener.JPG)
 
 # Features - 產品功能
 * 使用者可以輸入網址產生縮短的網址
