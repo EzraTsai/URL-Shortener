@@ -5,9 +5,10 @@ const exphbs = require('express-handlebars')
 const routes = require('./routes')
 const Shortener = require('./models/shortener')
 const app = express()
-const PORT = 3000
+const PORT = process.env.PORT || 3000
 
-mongoose.connect('mongodb://localhost/URL-shortener', { useNewUrlParser: true, useUnifiedTopology: true })
+const MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost/URL-shortener'
+mongoose.connect(MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true })
 
 const db = mongoose.connection
 db.on('error', () => {
@@ -34,5 +35,5 @@ app.get('/:shortUrl', (req, res) => {
 })
 
 app.listen(PORT, () => {
-    console.log('App is listening on port: 3000')
+    console.log(`App is listening on port: ${PORT}`)
 })
